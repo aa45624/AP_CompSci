@@ -20,6 +20,9 @@ public class PongPanel extends Component implements ActionListener, KeyListener 
     private int paddle2Y = 100;
     private int paddle1X = 45;
     private int paddle2X = 950;
+    private int paddle1Dir= 0;
+    private int paddle2Dir= 0;
+    private int paddleSpeed= 3;
     private int xVelocity = 3;
     private int yVelocity = 3;
     private int size = 5;
@@ -52,6 +55,10 @@ public class PongPanel extends Component implements ActionListener, KeyListener 
 
 
     public void paint(Graphics pc){
+        // Perform frame calculations
+        paddle1Y+=paddle1Dir*paddleSpeed;
+        paddle2Y+=paddle2Dir*paddleSpeed;
+
         pc.setColor(Color.BLACK);
         pc.fillRect(0, 0, getWidth(), getHeight());
 
@@ -113,26 +120,29 @@ public class PongPanel extends Component implements ActionListener, KeyListener 
     }
 
     public void keyPressed(KeyEvent e){
+        // Up arrow
         if(e.getKeyCode() == 38){
 
 
-            paddle2Y = paddle2Y - 20;
+            paddle2Dir=-1;
         }
+        // Down arrow
         if(e.getKeyCode() == 40){
 
-            paddle2Y = paddle2Y + 20;
+            paddle2Dir=1;
             //System.out.println("Down");
 
         }
-
+        // W
         if(e.getKeyCode() == 87){
 
 
-            paddle1Y = paddle1Y - 20;
+            paddle1Dir=-1;
         }
+        // S
         if(e.getKeyCode() == 83){
 
-            paddle1Y = paddle1Y + 20;
+            paddle1Dir=1;
             //System.out.println("Down");
 
         }
@@ -141,7 +151,32 @@ public class PongPanel extends Component implements ActionListener, KeyListener 
 
     public void keyReleased(KeyEvent e)
     {
+        // Up arrow
+        if(e.getKeyCode() == 38){
 
+
+            paddle2Dir=0;
+        }
+        // Down arrow
+        if(e.getKeyCode() == 40){
+
+            paddle2Dir=0;
+            //System.out.println("Down");
+
+        }
+        // W
+        if(e.getKeyCode() == 87){
+
+
+            paddle1Dir=0;
+        }
+        // S
+        if(e.getKeyCode() == 83){
+
+            paddle1Dir=0;
+            //System.out.println("Down");
+
+        }
     }
 
     public void keyTyped(KeyEvent e)
