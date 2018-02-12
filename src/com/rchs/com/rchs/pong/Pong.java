@@ -13,7 +13,7 @@ public class Pong extends JFrame {
 
     public Pong()
     {
-        PongPanel panel = new PongPanel();
+        GamePanel panel = new GamePanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         setBackground(Color.BLACK);
